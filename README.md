@@ -1,4 +1,4 @@
-# @yay2008/video-seek-slider
+# @yay2008/react-video-seek-slider
 
 > a video seek slider
 

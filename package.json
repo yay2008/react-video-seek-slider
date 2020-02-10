@@ -1,11 +1,11 @@
 {
   "name": "@yay2008/react-video-seek-slider",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "types": "dist/index.d.ts",
   "description": "a video seek slider",
   "author": "pengyuan",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/yay2008/react-video-seek-slider",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",

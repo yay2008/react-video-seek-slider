@@ -64,6 +64,7 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
   public componentDidMount(): void {
     this.setTrackWidthState();
     if (this.track) {
+      window.addEventListener("resize", this.setTrackWidthState);
       this.track.addEventListener("resize", this.setTrackWidthState);
       this.track.addEventListener("mousemove", this.handleSeeking);
       this.track.addEventListener("mouseup", this.mouseSeekingHandler);
@@ -77,6 +78,7 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
 
   public componentWillUnmount(): void {
     if (this.track) {
+      window.removeEventListener("resize", this.setTrackWidthState);
       this.track.removeEventListener("resize", this.setTrackWidthState);
       this.track.removeEventListener("mousemove", this.handleSeeking);
       this.track.removeEventListener("mouseup", this.mouseSeekingHandler);
@@ -147,6 +149,7 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
 
   private setTrackWidthState = (): void => {
     if (this.track) {
+      console.log('this.track.offsetWidth', this.track.offsetWidth);
       this.setState({
         trackWidth: this.track.offsetWidth,
       });

@@ -1,8 +1,6 @@
 import * as React from "react";
-import SeekSlider from "@netless/seek-slider";
-import debounce from "lodash/debounce";
+import SeekSlider from "@yay2008/seek-slider";
 import "./App.less";
-
 
 export type AppStates = {
     currentTime: number;
@@ -11,6 +9,8 @@ export type AppStates = {
 };
 
 export default class App extends React.Component<{}, AppStates> {
+
+    private video: HTMLVideoElement | null;
     public constructor(props: {}) {
         super(props);
         this.state = {
@@ -18,7 +18,6 @@ export default class App extends React.Component<{}, AppStates> {
             progress: 0,
             test: false,
         };
-        debounce(this.getSlider, 1000);
     }
 
     private setSeeking = ( evt: React.MouseEvent): void => {
@@ -38,6 +37,11 @@ export default class App extends React.Component<{}, AppStates> {
                 progress: this.state.progress < 11150 ? this.state.progress + 20 : 0,
             });
         }, 100);
+        // setInterval(() => {
+        //     this.setState({
+        //         progress: this.state.progress < 11150 ? this.state.progress + 20 : 0,
+        //     });
+        // }, 100);
     }
 
     private getSlider(): React.ReactNode {
@@ -64,6 +68,7 @@ export default class App extends React.Component<{}, AppStates> {
             <div className="container"
             >
                 <h1>React slider</h1>
+                <video width={480} height={360} ref={ref => this.video = ref} controls={true} src={"http://ykd-vod.yunkaodian.com/13.mp4"}/>
                 {this.getSlider()}
             </div>
         );

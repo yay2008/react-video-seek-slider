@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@netless/seek-slider": "link:..",
+    "@yay2008/react-video-seek-slider": "link:..",
     "@types/lodash": "^4.14.149",
     "lodash.debounce": "^4.0.8",
     "react": "^16.8.6",

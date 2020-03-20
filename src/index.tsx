@@ -11,6 +11,7 @@ export type VideoSeekSliderProps = {
   fullTime: number;
   currentTime: number;
   onChange: (time: number, offsetTime: number) => void;
+  onChangeCurTime: (time: number) => void;
   offset?: number;
   bufferProgress?: number;
   hideHoverTime?: boolean;
@@ -142,6 +143,9 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
       //   const time: number = +(percent * (this.props.fullTime / 100)).toFixed(0);
       //   this.props.onChange(time, (time + this.offset));
       // }
+      const percent: number = position * 100 / this.state.trackWidth;
+      const time: number = +(percent * (this.props.fullTime / 100)).toFixed(0);
+      this.props.onChangeCurTime(time);
       console.log('touchend', this.state.seekHoverPosition);
     }
   }

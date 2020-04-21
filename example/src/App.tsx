@@ -1,5 +1,5 @@
 import * as React from "react";
-import SeekSlider from "@yay2008/seek-slider";
+import SeekSlider from "@yay2008/react-video-seek-slider";
 import "./App.less";
 
 export type AppStates = {
@@ -59,6 +59,7 @@ export default class App extends React.Component<{}, AppStates> {
                 });
                 console.log("changeTime", time);
             }}
+            onChangeCurTime={(mtime: number) => console.log(mtime)}
             limitTimeTooltipBySides={true}
         />;
     }

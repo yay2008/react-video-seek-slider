@@ -150,13 +150,15 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
     }
   }
 
-
   private setTrackWidthState = (): void => {
-    if (this.track) {
-      console.log('this.track.offsetWidth', this.track.offsetWidth);
-      this.setState({
-        trackWidth: this.track.offsetWidth,
-      });
+    const track = this.track;
+    if (track) {
+      console.log('this.track.offsetWidth', track.offsetWidth);
+      setTimeout( () => {
+        this.setState({
+          trackWidth: track.offsetWidth,
+        })
+      }, 400)
     }
   }
 

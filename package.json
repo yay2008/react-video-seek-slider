@@ -1,6 +1,6 @@
 {
   "name": "@yay2008/react-video-seek-slider",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "types": "dist/index.d.ts",
   "description": "a video seek slider",
   "author": "pengyuan",

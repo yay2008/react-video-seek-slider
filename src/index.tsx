@@ -46,13 +46,13 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
   public constructor(props: VideoSeekSliderProps) {
     super(props);
     if (this.props.offset) {
-        this.offset = this.props.offset;
+      this.offset = this.props.offset;
     }
     if (this.props.secondsPrefix) {
-        this.secondsPrefix = this.props.secondsPrefix;
+      this.secondsPrefix = this.props.secondsPrefix;
     }
     if (this.props.minutesPrefix) {
-        this.minutesPrefix = this.props.minutesPrefix;
+      this.minutesPrefix = this.props.minutesPrefix;
     }
     this.state = {
       ready: false,
@@ -95,7 +95,7 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
    * @param event
    */
   private handleTouchStart = (event: any): void => {
-    console.log('touchstart',event);
+    console.log('touchstart', event);
     let pageX: number = 0;
 
     for (let i = 0; i < event.changedTouches.length; i++) {
@@ -152,11 +152,14 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
 
 
   private setTrackWidthState = (): void => {
-    if (this.track) {
-      console.log('this.track.offsetWidth', this.track.offsetWidth);
-      this.setState({
-        trackWidth: this.track.offsetWidth,
-      });
+    let track: any = this.track;
+    if (track) {
+      setTimeout(() => {
+        console.log('track.offsetWidth', track.offsetWidth);
+        this.setState({
+          trackWidth: track.offsetWidth,
+        });
+      }, 400)
     }
   }
 
@@ -173,13 +176,13 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
   }
 
   private getPositionStyle(time: number): TransformType {
-     if (this.mobileSeeking || this.seeking) {
+    if (this.mobileSeeking || this.seeking) {
       const position: number = this.state.seekHoverPosition * 100 / this.state.trackWidth;
       //  const position: number = 100 * 100 / this.state.trackWidth;
       return {
         transform: `scaleX(${position / 100})`,
       };
-   } else {
+    } else {
 
       const position: number = time * 100 / this.props.fullTime;
 
@@ -275,7 +278,7 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
     }
     console.log('state', !state ? 0 : this.state.seekHoverPosition);
     this.setState({
-      seekHoverPosition:  this.state.seekHoverPosition,
+      seekHoverPosition: this.state.seekHoverPosition,
     });
   }
 
@@ -298,7 +301,7 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
 
   private isThumbActive(): boolean {
     // return this.state.seekHoverPosition > 0 || this.seeking;
-    return  this.mobileSeeking || this.seeking
+    return this.mobileSeeking || this.seeking
   }
 
   private renderBufferProgress = (): React.ReactNode => {
@@ -306,13 +309,14 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
       if (this.props.bufferColor) {
         return <div
           className={styles.buffered}
-          style={{...this.getPositionStyle(this.props.bufferProgress),
+          style={{
+            ...this.getPositionStyle(this.props.bufferProgress),
             backgroundColor: this.props.bufferColor,
-          }}/>;
+          }} />;
       } else {
         return <div
           className={styles.buffered}
-          style={this.getPositionStyle(this.props.bufferProgress)}/>;
+          style={this.getPositionStyle(this.props.bufferProgress)} />;
       }
     } else {
       return null;
@@ -323,40 +327,40 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
   private renderProgress = () => {
     if (this.props.sliderColor) {
       return <div
-          className={styles.connect}
-          style={{...this.getPositionStyle(this.props.currentTime), backgroundColor: this.props.sliderColor}}
+        className={styles.connect}
+        style={{ ...this.getPositionStyle(this.props.currentTime), backgroundColor: this.props.sliderColor }}
       />;
     } else {
       return <div
-          className={styles.connect}
-          style={this.getPositionStyle(this.props.currentTime)}/>;
+        className={styles.connect}
+        style={this.getPositionStyle(this.props.currentTime)} />;
     }
   }
 
   private renderHoverProgress = () => {
-      if (this.props.sliderHoverColor) {
-          return <div
-              className={styles["seek-hover"]}
-              style={{...this.getSeekHoverPosition(), backgroundColor: this.props.sliderHoverColor}}/>;
-      } else {
-          return <div
-              className={styles["seek-hover"]}
-              style={this.getSeekHoverPosition()}/>;
-      }
+    if (this.props.sliderHoverColor) {
+      return <div
+        className={styles["seek-hover"]}
+        style={{ ...this.getSeekHoverPosition(), backgroundColor: this.props.sliderHoverColor }} />;
+    } else {
+      return <div
+        className={styles["seek-hover"]}
+        style={this.getSeekHoverPosition()} />;
+    }
   }
 
   private renderThumb = (): React.ReactNode => {
     if (this.props.thumbColor) {
       return <div
         className={this.isThumbActive() ? `${styles.thumb} ${styles.active}` : styles.thumb}
-        style={{...this.getThumbHandlerPosition()}}>
-        <div style={{backgroundColor: this.props.thumbColor}} className={styles.handler}/>
+        style={{ ...this.getThumbHandlerPosition() }}>
+        <div style={{ backgroundColor: this.props.thumbColor }} className={styles.handler} />
       </div>;
     } else {
       return <div
         className={this.isThumbActive() ? `${styles.thumb} ${styles.active}` : styles.thumb}
-        style={{...this.getThumbHandlerPosition()}}>
-        <div className={styles.handler}/>
+        style={{ ...this.getThumbHandlerPosition() }}>
+        <div className={styles.handler} />
       </div>;
     }
     return <div></div>

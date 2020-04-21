@@ -1,5 +1,5 @@
 import * as React from "react";
-import SeekSlider from "@yay2008/seek-slider";
+import SeekSlider from "@yay2008/react-video-seek-slider";
 import "./App.less";
 
 export type AppStates = {
@@ -20,7 +20,7 @@ export default class App extends React.Component<{}, AppStates> {
         };
     }
 
-    private setSeeking = ( evt: React.MouseEvent): void => {
+    private setSeeking = (evt: React.MouseEvent): void => {
         // evt.preventDefault();
         evt.stopPropagation();
         evt.nativeEvent.stopImmediatePropagation();
@@ -59,6 +59,9 @@ export default class App extends React.Component<{}, AppStates> {
                 });
                 console.log("changeTime", time);
             }}
+            onChangeCurTime={(time: number) => {
+                console.log("changeTime", time);
+            }}
             limitTimeTooltipBySides={true}
         />;
     }
@@ -68,7 +71,7 @@ export default class App extends React.Component<{}, AppStates> {
             <div className="container"
             >
                 <h1>React slider</h1>
-                <video width={480} height={360} ref={ref => this.video = ref} controls={true} src={"http://ykd-vod.yunkaodian.com/13.mp4"}/>
+                <video width={480} height={360} ref={ref => this.video = ref} controls={true} src={"http://ykd-vod.yunkaodian.com/13.mp4"} />
                 {this.getSlider()}
             </div>
         );
